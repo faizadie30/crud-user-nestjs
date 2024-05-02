@@ -27,7 +27,7 @@ export class CreateUserDto {
   })
   @StrongPassword({
     message:
-      'Kata sandi minimal 8 karakter, harus di sertai huruf besar, kecil dan angka!',
+      'Kata sandi minimal 6 karakter, harus di sertai huruf besar, kecil dan angka!',
   })
   password: string;
 }

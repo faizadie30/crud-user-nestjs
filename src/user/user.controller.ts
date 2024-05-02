@@ -1,7 +1,16 @@
-import { Body, Controller, Get, HttpCode, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  Post,
+  Query,
+  Request,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserService } from './user.service';
+import { FindAllUser } from './dto/find-all-user.dto';
 
 @ApiTags('User')
 @Controller('user')
@@ -10,13 +19,20 @@ export class UserController {
 
   @Post()
   @HttpCode(200)
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+  async create(@Body() createUserDto: CreateUserDto): Promise<object> {
+    try {
+      return await this.userService.create(createUserDto);
+    } catch (error) {
+      throw error;
+    }
   }
 
   @Get()
   @HttpCode(200)
-  findAll() {
-    return this.userService.findAll();
+  async findAll(
+    @Request() request: any,
+    @Query() query: FindAllUser,
+  ): Promise<object> {
+    return await this.userService.findAll(request, query);
   }
 }
