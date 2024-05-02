@@ -17,14 +17,34 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typeorm": "ts-node ./node_modules/typeorm/cli",
+    "entity:create": "yarn run typeorm entity:create",
+    "seed:create": "yarn run typeorm -- migration:create",
+    "seed:run": "yarn run typeorm migration:run -- -d ./src/config/typeorm-seeds.config.ts",
+    "seed:down": "yarn run typeorm migration:revert -- -d ./src/config/typeorm-seeds.config.ts",
+    "migration:run": "yarn run typeorm migration:run -- -d ./src/config/typeorm.config.ts",
+    "migration:generate": "yarn run typeorm -- -d ./src/config/typeorm.config.ts migration:generate",
+    "migration:create": "yarn run typeorm -- migration:create",
+    "migration:down": "yarn run typeorm migration:revert -- -d ./src/config/typeorm.config.ts"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
+    "@nestjs/config": "^3.2.2",
     "@nestjs/core": "^9.0.0",
+    "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/swagger": "^7.3.1",
+    "@nestjs/typeorm": "^10.0.2",
+    "bcrypt": "^5.1.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "dotenv": "^16.4.5",
+    "pg": "^8.11.5",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "swagger-ui-express": "^5.0.0",
+    "typeorm": "^0.3.20"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
