@@ -1,5 +1,4 @@
 # About
-test from xcidic
 
 # Stack
 1. nestjs version 10
